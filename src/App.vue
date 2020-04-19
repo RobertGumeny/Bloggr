@@ -29,7 +29,7 @@ export default {
 @import "./assets/_overrides.scss";
 
 body {
-  font-family: "Baloo Da 2", cursive;
+  font-family: "Dosis", sans-serif;
   font-weight: bold;
 }
 </style>

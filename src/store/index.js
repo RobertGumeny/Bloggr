@@ -8,7 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {},
-    blogs: []
+    blogs: [],
+    activeBlog: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setBlogs(state, blogs) {
       state.blogs = blogs;
+    },
+    setActiveBlog(state, blog) {
+      state.activeBlog = blog;
     }
   },
   actions: {
@@ -42,6 +46,25 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async getBlog({ commit, }, blogId) {
+      try {
+        let res = await api.get('blogs/' + blogId)
+        commit('setActiveBlog', res.data.blog)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getBlogForEdit({ commit, }, blogId) {
+      console.log(blogId)
+      try {
+        let res = await api.get('blogs/' + blogId)
+        console.log(res.data.blog)
+        commit('setActiveBlog', res.data.blog)
+        console.log(this.state.activeBlog)
+      } catch (error) {
+        console.error(error)
+      }
+    },
     // NOTE Post requests
 
     async postBlog({ commit, dispatch }, newBlog) {
@@ -53,10 +76,18 @@ export default new Vuex.Store({
       }
     },
     // NOTE Put requests
+    async editBlog({ commit, dispatch }, blogData) {
+      try {
+        await api.put('blogs/' + blogData._id, blogData)
+        dispatch('getBlogs')
+      } catch (error) {
+        console.error(error)
+      }
+    },
     // NOTE Delete requests
     async deleteBlog({ commit, dispatch }, blogId) {
       try {
-        let res = await api.delete('blogs/' + blogId)
+        await api.delete('blogs/' + blogId)
         dispatch('getBlogs')
       } catch (error) {
         console.error(error)

@@ -2,25 +2,27 @@
   <div class="home container-fluid">
     <div class="row text-center">
       <div class="col-12 my-2">
-        <h1 class="mb-0">Welcome to Bloggr!</h1>
-        <p class="my-0">Please select a blog below to read more!</p>
+        <h1 class="mb-2">Welcome to Bloggr!</h1>
+        <h4 class="my-0">Please select a blog below to read more!</h4>
         <div v-if="$auth.isAuthenticated">
-          <p class="mt-0">
+          <h4 class="mt-0">
             Or you can
             <button
               type="button"
-              class="btn btn-link"
+              class="btn btn-link post-link"
               data-toggle="modal"
               data-target="#blogModal"
-            >post</button>
+            >
+              <span class="h4">post</span>
+            </button>
             your own blog!
-          </p>
+          </h4>
           <BlogModal id="blogModal"></BlogModal>
         </div>
-        <p class="mt-0" v-else>
+        <h4 class="mt-0" v-else>
           Please
           <button type="button" class="btn btn-link" @click="login">log in</button> to post your own blog!
-        </p>
+        </h4>
       </div>
     </div>
     <div class="row">
@@ -48,8 +50,6 @@ export default {
   mounted() {
     this.$store.dispatch("getBlogs");
   },
-  updated() {},
-  created() {},
   computed: {
     blogs() {
       return this.$store.state.blogs;
@@ -79,10 +79,15 @@ export default {
 
 <style scoped>
 h1 {
-  color: #2d5873;
+  color: #383838;
+  font-weight: bold;
+  font-size: 46px;
 }
 .btn-link {
   margin-left: -12px;
   margin-right: -12px;
+}
+.post-link {
+  margin-top: -5px;
 }
 </style>

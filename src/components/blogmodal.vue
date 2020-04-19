@@ -35,6 +35,6 @@ export default {
 
 <style scoped>
 .modal-header {
-  background-color: #2d5873;
+  background-color: #7b7b7b;
 }
 </style>

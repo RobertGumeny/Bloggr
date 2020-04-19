@@ -18,11 +18,7 @@
         v-model="newBlog.body"
       />
     </div>
-    <button
-      class="btn btn-outline-primary mt-3"
-      data-dismiss="modal"
-      @click="postBlog()"
-    >Post your Blog</button>
+    <button class="btn btn-primary mt-3" data-dismiss="modal" @click="postBlog()">Post your Blog</button>
   </div>
 </template>
 

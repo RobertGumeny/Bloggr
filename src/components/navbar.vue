@@ -99,16 +99,16 @@ export default {
 
 <style lang="scss">
 nav {
-  background-color: #2d5873;
+  background-color: #7b7b7b;
 }
 .nav-link {
-  color: #a4aeb2;
+  color: rgb(246, 252, 255);
 }
 .nav-link:hover {
-  color: #0a1128;
+  color: #383838;
 }
 .active a {
-  color: #e1eef4;
+  color: #383838;
 }
 .avatar {
   border-radius: 50%;
