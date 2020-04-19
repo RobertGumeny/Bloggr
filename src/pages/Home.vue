@@ -49,6 +49,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getBlogs");
+    this.$store.dispatch("getProfile");
   },
   computed: {
     blogs() {
