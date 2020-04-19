@@ -47,7 +47,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
+  created() {
     this.$store.dispatch("getBlogs");
     this.$store.dispatch("getProfile");
   },

@@ -56,7 +56,7 @@
               data-target="#blogModal2"
             >Post a Blog</button>
             <button class="dropdown-item text-danger" @click="logout" type="button">Logout</button>
-            <BlogModal2 id="blogModal2"></BlogModal2>
+            <BlogModal id="blogModal2"></BlogModal>
           </div>
         </div>
       </div>

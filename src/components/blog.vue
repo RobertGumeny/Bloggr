@@ -7,6 +7,7 @@
       </div>
     </div>
     <div class="card-body">
+      <img class="rounded img-fluid blog-thumbnail" :src="blogData.imgUrl" alt />
       <p class="card-text">{{blogData.creatorEmail}}</p>
       <div class="container-fluid">
         <div class="row">
@@ -57,20 +58,18 @@ export default {
       return this.$store.state.profile;
     }
   },
-  created() {
-    this.$store.dispatch("getProfile");
-  },
+  created() {},
   methods: {
-    triggerEdit() {
-      // console.log("blogData", this.blogData._id);
-      this.$store.dispatch("getBlogForEdit", this.blogData._id);
-    },
     getDetails() {
       this.$store.commit("setActiveBlog", {});
       this.$router.push({
         name: "BlogDetails",
         params: { blogId: this.blogData._id }
       });
+    },
+    triggerEdit() {
+      // console.log("blogData", this.blogData._id);
+      this.$store.dispatch("getBlogForEdit", this.blogData._id);
     },
     deleteBlog() {
       this.$store.dispatch("deleteBlog", this.blogData._id);
@@ -84,6 +83,12 @@ export default {
 
 
 <style scoped>
+/* .blog-thumbnail {
+  height: 75px;
+} */
+.btn-sm {
+  margin-bottom: -25px;
+}
 .card {
   border-color: #7b7b7b;
   box-shadow: 5px 5px 5px #aaaaaa;
@@ -93,9 +98,6 @@ export default {
 }
 .card-link {
   margin-top: -20px;
-}
-.btn-sm {
-  margin-bottom: -25px;
 }
 .card-body {
   background-color: rgb(253, 242, 242);

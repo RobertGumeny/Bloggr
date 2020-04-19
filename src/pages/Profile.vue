@@ -5,6 +5,7 @@
         <h1>Welcome {{ profile.name }}</h1>
         <img class="rounded" :src="profile.picture" alt />
         <p>{{ profile.email }}</p>
+        <button class="btn btn-primary" @click="showData()">Show Blog Data</button>
       </div>
     </div>
     <div class="row">
@@ -20,6 +21,11 @@
 import UserBlog from "../components/userblog";
 export default {
   name: "Profile",
+  methods: {
+    showData() {
+      this.$store.dispatch("getComments");
+    }
+  },
   computed: {
     profile() {
       return this.$store.state.profile;
