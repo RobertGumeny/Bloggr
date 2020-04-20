@@ -4,7 +4,19 @@
       <div class="col-1"></div>
       <div class="col-10">
         <div class="jumbotron">
+          <button
+            class="btn btn-sm mr-auto"
+            @click="triggerEdit()"
+            data-toggle="modal"
+            data-target="#editModal"
+            v-if=" this.blog.creatorEmail == this.profile.email"
+          >
+            <i class="fas fa-pencil-alt text-warning mr-2"></i>Edit your blog post
+          </button>
+
           <h1 class="display-4">{{blog.title}}</h1>
+
+          <EditModal id="editModal"></EditModal>
 
           <h3 class="mr-auto">{{blog.creator.name}}</h3>
           <a class="ml-auto font-italic" @click="showComments = true">{{comments.length}} comments</a>
@@ -46,6 +58,7 @@
 
 <script>
 import Comment from "../components/blogcomments";
+import EditModal from "../components/editmodal";
 export default {
   name: "blog-details",
   data() {
@@ -76,10 +89,14 @@ export default {
       this.newComment.creatorEmail = this.blog.creatorEmail;
       this.$store.dispatch("postComment", this.newComment);
       this.newComment = {};
+    },
+    triggerEdit() {
+      this.$store.dispatch("getBlogForEdit", this.blog._id);
     }
   },
   components: {
-    Comment
+    Comment,
+    EditModal
   }
 };
 </script>

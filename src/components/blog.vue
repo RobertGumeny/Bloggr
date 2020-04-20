@@ -68,7 +68,6 @@ export default {
       });
     },
     triggerEdit() {
-      // console.log("blogData", this.blogData._id);
       this.$store.dispatch("getBlogForEdit", this.blogData._id);
     },
     deleteBlog() {
