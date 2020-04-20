@@ -1,5 +1,5 @@
 <template>
-  <div class="userblog col-3">
+  <div class="userblog col-3 mx-auto">
     <h5>{{userBlogData.title}}</h5>
   </div>
 </template>

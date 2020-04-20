@@ -1,32 +1,44 @@
 <template>
-  <div class="blog-details container-fluid">
+  <div class="container">
     <div class="row">
-      <div class="col-6 mx-auto text-center">
-        <h3>{{blog.title}}</h3>
-        <h3>{{blog.body}}</h3>
-        <h4>{{blog.creator.name}}</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4 mx-auto">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Add a comment"
-            v-model="newComment.body"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary btn-sm" @click="postComment()">
-              <i class="fas fa-plus"></i>
-            </button>
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="jumbotron">
+          <h1 class="display-4">{{blog.title}}</h1>
+
+          <h3 class="mr-auto">{{blog.creator.name}}</h3>
+          <a class="ml-auto font-italic" @click="showComments = true">{{comments.length}} comments</a>
+
+          <img :src="blog.imgUrl" alt class="img-fluid" />
+          <hr />
+          <h5>{{blog.body}}</h5>
+          <hr />
+          <div v-if="!showComments">
+            <button type="button" class="btn btn-link" @click="showComments = true">Show Comments</button>
+          </div>
+          <div v-else>
+            <h5 class="font-weight-bold">Comments:</h5>
+            <div class="col-6" v-if="$auth.isAuthenticated">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Add a comment"
+                  v-model="newComment.body"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary btn-sm" @click="postComment()">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <Comment v-for="comment in comments" :commentData="comment" :key="comment._id"></Comment>
           </div>
         </div>
       </div>
-      <div class="col-12 text-center">
-        <h5>Comments will go here</h5>
-        <Comment v-for="comment in comments" :commentData="comment" :key="comment._id"></Comment>
-      </div>
+      <div class="col-1"></div>
     </div>
   </div>
 </template>
@@ -38,7 +50,8 @@ export default {
   name: "blog-details",
   data() {
     return {
-      newComment: {}
+      newComment: {},
+      showComments: false
     };
   },
   created() {

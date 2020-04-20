@@ -11,8 +11,8 @@
     <div class="row">
       <div class="col-12 text-center">
         <h3>Your Blog Posts:</h3>
+        <UserBlog v-for="userBlog in userBlogs" :userBlogData="userBlog" :key="userBlog._id"></UserBlog>
       </div>
-      <UserBlog v-for="userBlog in userBlogs" :userBlogData="userBlog" :key="userBlog._id"></UserBlog>
     </div>
   </div>
 </template>

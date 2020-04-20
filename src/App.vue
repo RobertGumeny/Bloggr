@@ -30,6 +30,5 @@ export default {
 
 body {
   font-family: "Dosis", sans-serif;
-  font-weight: bold;
 }
 </style>

@@ -1,23 +1,24 @@
 <template>
-  <div class="blogcomment col-3">
-    <h5>{{commentData.body}}</h5>
-    <p>{{commentData.creatorEmail}}</p>
-    <div
-      class="col-3 d-flex mb-1 ml-auto"
-      v-if=" this.commentData.creatorEmail == this.profile.email"
-    >
-      <button
-        class="btn btn-sm"
-        @click="triggerEditComment(commentData)"
-        data-toggle="modal"
-        data-target="#editCommentModal"
-      >
-        <i class="fas fa-pencil-alt text-warning"></i>
-      </button>
-      <EditCommentModal id="editCommentModal"></EditCommentModal>
-      <button class="btn btn-sm" @click="deleteComment()">
-        <i class="fas fa-trash-alt text-danger"></i>
-      </button>
+  <div class="blogcomment col-8">
+    <p class="font-italic mb-0">
+      <u>{{commentData.creatorEmail}} says:</u>
+    </p>
+    <div class="d-flex">
+      <h6>{{commentData.body}}</h6>
+      <div class="col-3 d-flex mb-1" v-if="this.commentData.creatorEmail == this.profile.email">
+        <button
+          class="btn btn-sm"
+          @click="triggerEditComment(commentData)"
+          data-toggle="modal"
+          data-target="#editCommentModal"
+        >
+          <i class="fas fa-pencil-alt text-warning"></i>
+        </button>
+        <EditCommentModal id="editCommentModal"></EditCommentModal>
+        <button class="btn btn-sm" @click="deleteComment()">
+          <i class="fas fa-trash-alt text-danger"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
